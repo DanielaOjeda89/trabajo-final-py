@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ titulo }}</title>
+    </head>
+
+    <body>
+        <div class="card">
+            <h1>{{ titulo }}</h1>
+            <hr>
+            <p>
+                <strong>Total Global de Emisiones:</strong>
+                <span class= "destacado">{{ metricas.total_global_emisiones }}</span>
+            </p>
+            <p>
+                <strong>Planta Mayor Consumo:</strong>
+                {{ metricas.planta_mayor_consumo }}
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Detalle de registro por planta</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Planta</th>
+                        <th>Consumo (kwh)</th>
+                        <th>Factor Emision</th>
+                        <th>Emision Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for item in metricas.desglose %}
+                    <tr>
+                        <td>{{ item.planta}}</td>
+                        <td>{{ item.consumo_kwh}}</td>
+                        <td>{{ item.factor_emision}}</td>
+                        <td>{{ item.valores_totales}}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4"> No hay consumos registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </body>
+</html>
